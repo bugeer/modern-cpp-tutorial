@@ -57,8 +57,8 @@ public:
         delete ptr_;
     }
 
-    smart_ptr(const smart_ptr&) = delete;
-    smart_ptr& operator=(const smart_ptr&) = delete;
+    // smart_ptr(const smart_ptr&) = delete;
+    // smart_ptr& operator=(const smart_ptr&) = delete;
 
     T* get() const {
         return ptr_;
