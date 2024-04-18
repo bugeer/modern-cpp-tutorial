@@ -2,6 +2,7 @@
 #define __SHAPE__
 
 #include <cstdio>
+#include <stdexcept>
 enum class shape_type {
     circle,
     triangle,
@@ -17,23 +18,20 @@ public:
 
 class circle : public shape {
 public:
-    ~circle() {
-        puts("~circle");
-    }
+    circle()  { puts("circle()"); }
+    ~circle() { puts("~circle" ); }
 };
 
 class triangle : public shape {
 public:
-    ~triangle() {
-        puts("~triangle");
-    }
+    triangle()  { puts("triangle()"); }
+    ~triangle() { puts("~triangle" ); }
 };
 
 class rectangle : public shape {
 public:
-    ~rectangle() {
-        puts("~rectangle");
-    }
+    rectangle()  { puts("rectangle()"); }
+    ~rectangle() { puts("~rectangle" ); }
 };
 
 inline
@@ -45,26 +43,8 @@ shape* create_shape(shape_type type) {
             return new triangle();
         case shape_type::rectangle:
             return new rectangle();
-        default:
-            return new circle();
     }
+    throw std::logic_error("shape_type is invalid.");
 }
-
-class shape_wrapper {
-public:
-    explicit shape_wrapper(shape* ptr = nullptr): ptr_(ptr) {
-    }
-
-    ~shape_wrapper() {
-        delete ptr_;
-    }
-
-    shape* get() const {
-        return ptr_;
-    }
-
-private:
-    shape* ptr_;
-};
 
 #endif // !__SHAPE__
